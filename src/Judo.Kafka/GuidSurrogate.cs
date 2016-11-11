@@ -1,51 +1,51 @@
 ﻿namespace Judo.Kafka
 {
-    using System;
-    using System.Threading.Tasks;
-    using RdKafka;
-    using Judo.SchemaRegistryClient;
-    using Microsoft.Hadoop.Avro;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
+    using System;
+    using System.Linq;
 
-    class GuidSurrogate : IAvroSurrogate
-    {
 
-        private static readonly Type[] GuidTypes = new[]{typeof(Guid), typeof(Guid?)};
+    class GuidSurrogate : IAvroSurrogateStrategy
+    {
 
-        public object GetDeserializedObject(object obj, Type targetType)
-        {
-            if(IsGuid(obj.GetType()))
-            {
-                return Guid.Parse(obj.ToString());
-            }
+        private static readonly Type[] GuidTypes = new[] { typeof(Guid), typeof(Guid?) };
 
-            return obj;
-        }
+        public object GetDeserializedObject(object obj, Type targetType)
+        {
+            if (IsGuid(obj.GetType()))
+            {
+                return Guid.Parse(obj.ToString());
+            }
 
-        public object GetObjectToSerialize(object obj, Type targetType)
-        {
-            if(IsGuid(obj.GetType()))
-            {
-                return obj?.ToString();
-            }
-            
-            return obj;
-        }
+            return obj;
+        }
 
-        public Type GetSurrogateType(Type type)
-        {
-            if(IsGuid(type))
-            {
-                return typeof(string);
-            }
-            return type;
-        }
+        public object GetObjectToSerialize(object obj, Type targetType)
+        {
+            if (IsGuid(obj.GetType()))
+            {
+                return obj?.ToString();
+            }
 
-        private bool IsGuid(Type type)
-        {
-            return GuidTypes.Contains(type);
-        }
-    }
+            return obj;
+        }
+
+        public Type GetSurrogateType(Type type)
+        {
+            if (IsGuid(type))
+            {
+                return typeof(string);
+            }
+            return type;
+        }
+
+        public bool SurrogateFor(Type type)
+        {
+            return IsGuid(type);
+        }
+
+        private bool IsGuid(Type type)
+        {
+            return GuidTypes.Contains(type);
+        }
+    }
 }
