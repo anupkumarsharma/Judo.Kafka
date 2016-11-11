@@ -6,6 +6,7 @@ namespace Judo.Kafka
     class AvroTopicProducer : ITopicProducer
     {
         private readonly Producer _producer;
+        
         private readonly Topic _topic;
 
         private readonly IKafkaSerialzier _kafkaSerializer;
@@ -33,8 +34,8 @@ namespace Judo.Kafka
 
         public void Dispose()
         {
-            _producer.Dispose();
             _topic.Dispose();
+            _producer.Dispose();
         }
     }
 }
