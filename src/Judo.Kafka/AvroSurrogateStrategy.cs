@@ -9,7 +9,7 @@ namespace Judo.Kafka
         private static readonly IAvroSurrogateStrategy[] Strategies = new IAvroSurrogateStrategy[]{new DateTimeSurrogate(), new GuidSurrogate()};
         public object GetDeserializedObject(object obj, Type targetType)
         {
-            var surrogate = GetStrategry(targetType);
+            var surrogate = GetStrategy(targetType);
             if(surrogate != null)
             {
                 surrogate.GetDeserializedObject(obj, targetType);
@@ -20,7 +20,7 @@ namespace Judo.Kafka
 
         public object GetObjectToSerialize(object obj, Type targetType)
         {
-            var surrogate = GetStrategry(targetType);
+            var surrogate = GetStrategy(targetType);
             if(surrogate != null)
             {
                 surrogate.GetObjectToSerialize(obj, targetType);
@@ -31,7 +31,7 @@ namespace Judo.Kafka
 
         public Type GetSurrogateType(Type type)
         {
-            var surrogate = GetStrategry(type);
+            var surrogate = GetStrategy(type);
             if(surrogate != null)
             {
                 surrogate.GetSurrogateType(type);
@@ -40,7 +40,7 @@ namespace Judo.Kafka
             return type;
         }
 
-        private IAvroSurrogate GetStrategry(Type targetType)
+        private IAvroSurrogate GetStrategy(Type targetType)
         {
             return Strategies.FirstOrDefault(s => s.SurrogateFor(targetType));
         }

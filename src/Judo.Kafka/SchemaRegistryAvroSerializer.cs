@@ -52,8 +52,7 @@ namespace Judo.Kafka
             var serializer = AvroSerializer.Create<TPayload>(new AvroSerializerSettings()
             {
                 Resolver = new AvroPublicMemberContractResolver(),
-                Surrogate = new AvroSurrogateStrategy(),
-                UsePosixTime = true
+                Surrogate = new AvroSurrogateStrategy()
             });
 
             _serializerCache.Add(typeof(TPayload), serializer);

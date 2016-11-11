@@ -5,13 +5,15 @@ namespace Judo.Kafka
 
     class DateTimeSurrogate : IAvroSurrogateStrategy
     {
+
+        private const string IsoFormat = "yyyy-MM-dd'T'HH:mm:ssZ";
         private static readonly Type[] DateTypes = new[] { typeof(DateTime), typeof(DateTime?) };
 
         public object GetDeserializedObject(object obj, Type targetType)
         {
             if(SurrogateFor(targetType))
             {
-                var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                var epoch = DateTime.Parse((string)obj);
                 return epoch.AddMilliseconds((long)obj);
             }
             
@@ -23,8 +25,7 @@ namespace Judo.Kafka
             if(SurrogateFor(obj.GetType()))
             {
                 var originalDate = (DateTime)obj;
-                var t = originalDate - new DateTime(1970, 1, 1);
-                return (t.TotalSeconds * 1000);
+                return originalDate.ToString(IsoFormat);
             }
             
             return obj;
@@ -34,7 +35,7 @@ namespace Judo.Kafka
         {
             if(SurrogateFor(type))
             {
-                return typeof(long);
+                return typeof(string);
             }
 
             return type;

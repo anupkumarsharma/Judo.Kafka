@@ -18,10 +18,9 @@ namespace Judo.Kafka
             _kafkaSerializer = kafkaSerializer;
         }
 
-        public async Task<DeliveryReport> ProduceAsync<TMessage>(TMessage payload, int partition = -1)
+        public Task<DeliveryReport> ProduceAsync<TMessage>(TMessage payload, int partition = -1)
         {
-            var binaryPayload = await _kafkaSerializer.SerializeAsync(payload, false, _topic.Name);
-            return await _topic.Produce(binaryPayload, partition: partition);
+            return _kafkaSerializer.SerializeAsync(payload, false, _topic.Name).ContinueWith(r => _topic.Produce(r.Result, partition: partition)).Unwrap();
         }
 
         public async Task<DeliveryReport> ProduceAsync<TKey, TMessage>(TKey key, TMessage message, int partition = -1)
