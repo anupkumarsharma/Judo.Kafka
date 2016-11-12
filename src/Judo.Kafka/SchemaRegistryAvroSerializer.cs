@@ -18,6 +18,17 @@ namespace Judo.Kafka
             _schemaRegistryClient = schemaRegistryClient;
         }
 
+        public Task<TPayload> DeserializeAsync<TPayload>(byte[] payload, bool isKey, string topic)
+        {
+            var subject = GetSubjectName(topic, isKey);
+            var serializer = GetSerializer<TPayload>();
+            using (var stream = new MemoryStream(payload))
+            {
+                stream.Seek(sizeof(byte) + sizeof(uint), SeekOrigin.Begin);
+                return Task.FromResult(serializer.Deserialize(stream));
+            }
+        }
+
         public async Task<byte[]> SerializeAsync<TPayload>(TPayload payload, bool isKey, string topic)
         {
             var subject = GetSubjectName(topic, isKey);

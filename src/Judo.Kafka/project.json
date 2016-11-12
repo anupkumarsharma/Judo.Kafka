@@ -3,8 +3,8 @@
 
   "dependencies": {
     "RdKafka": "0.9.1",
-    "Microsoft.Hadoop.Avro2": "1.2.1",
-    "SchemaRegistryClient": "1.0.0-beta00009" 
+    "Microsoft.Hadoop.Avro-Core":"1.1.1-alpha00008",
+    "SchemaRegistryClient": "1.0.0-beta00010" 
   },
 
   "frameworks": {

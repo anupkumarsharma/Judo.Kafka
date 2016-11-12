@@ -17,3 +17,4 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("4d103a2a-95e4-4f21-97e5-0ba1e4d3cb15")]
+[assembly: InternalsVisibleTo("Judo.Kafka.Tests")]

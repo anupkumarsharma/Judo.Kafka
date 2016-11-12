@@ -2,8 +2,10 @@
 
 namespace Judo.Kafka
 {
-    interface IKafkaSerialzier
+    public interface IKafkaSerialzier
     {
         Task<byte[]> SerializeAsync<TPayload>(TPayload payload, bool isKey, string topic);
+
+        Task<TPayload> DeserializeAsync<TPayload>(byte[] payload, bool isKey, string topic);
     }
 }

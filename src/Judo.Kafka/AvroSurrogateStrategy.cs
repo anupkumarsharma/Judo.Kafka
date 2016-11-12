@@ -12,7 +12,7 @@ namespace Judo.Kafka
             var surrogate = GetStrategy(targetType);
             if(surrogate != null)
             {
-                surrogate.GetDeserializedObject(obj, targetType);
+                return surrogate.GetDeserializedObject(obj, targetType);
             }
 
             return obj;
@@ -20,10 +20,10 @@ namespace Judo.Kafka
 
         public object GetObjectToSerialize(object obj, Type targetType)
         {
-            var surrogate = GetStrategy(targetType);
+            var surrogate = GetStrategy(obj.GetType());
             if(surrogate != null)
             {
-                surrogate.GetObjectToSerialize(obj, targetType);
+                return surrogate.GetObjectToSerialize(obj, targetType);
             }
             
             return obj;
@@ -34,7 +34,7 @@ namespace Judo.Kafka
             var surrogate = GetStrategy(type);
             if(surrogate != null)
             {
-                surrogate.GetSurrogateType(type);
+                return surrogate.GetSurrogateType(type);
             }
             
             return type;

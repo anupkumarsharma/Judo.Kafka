@@ -11,7 +11,7 @@
 
         public object GetDeserializedObject(object obj, Type targetType)
         {
-            if (IsGuid(obj.GetType()))
+            if (IsGuid(targetType))
             {
                 return Guid.Parse(obj.ToString());
             }

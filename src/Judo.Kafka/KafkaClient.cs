@@ -9,7 +9,7 @@ namespace Judo.Kafka
         private readonly string[] _bootstrapServers;
         private readonly string _schemaRegistryUrl;
         private Config _config;
-        public static KafkaClient Connect(string[] bootstrapServers, string schemaRegistryUrl, Config config)
+        public static KafkaClient Connect(string[] bootstrapServers, string schemaRegistryUrl, Config config = null)
         {
             return new KafkaClient(bootstrapServers, schemaRegistryUrl, config);
 
