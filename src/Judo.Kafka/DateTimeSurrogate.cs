@@ -10,7 +10,7 @@ namespace Judo.Kafka
             typeof(DateTime), 
             typeof(DateTimeOffset) };
 
-        internal const string IsoFormat="yyyy-MM-dd HH:mm:ss.ffffffzzz";
+        internal const string IsoFormat="yyyy-MM-dd HH:mm:ss.fffzzz";
 
         public object GetDeserializedObject(object obj, Type targetType)
         {
