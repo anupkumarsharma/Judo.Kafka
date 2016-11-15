@@ -73,7 +73,7 @@ namespace Judo.Kafka
 
         private string GetSubjectName(string topic, bool isKey)
         {
-            return topic.ToLower() + (isKey ? "-key" : "-value");
+            return topic + (isKey ? "-key" : "-value");
         }
 
         uint SwapEndianness(uint x)
