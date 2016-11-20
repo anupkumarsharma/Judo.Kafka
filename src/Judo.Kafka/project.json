@@ -3,23 +3,24 @@
 
   "dependencies": {
     "RdKafka": "0.9.1",
-    "Microsoft.Hadoop.Avro-Core":"1.1.1-alpha00008",
-    "SchemaRegistryClient": "1.0.0-beta00010" 
+    "Microsoft.Hadoop.Avro-Core":"1.1.1-alpha00009",
+    "SchemaRegistryClient": "1.0.0-beta00013" 
   },
 
   "frameworks": {
-    "netcoreapp1.1": {
+    "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.0.1"
+          "version": "1.0.0"
         }
       }
     },
     
-    "net452": {
+    "net451": {
       "dependencies": {
       }
-    }
+    },
+    "net461":{}
   }
 }
