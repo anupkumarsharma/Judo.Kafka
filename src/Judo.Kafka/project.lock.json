@@ -323,7 +323,7 @@
           "lib/netstandard1.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
-      "Microsoft.Hadoop.Avro-Core/1.1.1-alpha00009": {
+      "Microsoft.Hadoop.Avro-Core/1.1.1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -2708,7 +2708,7 @@
           "lib/netstandard1.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
-      "Microsoft.Hadoop.Avro-Core/1.1.1-alpha00009": {
+      "Microsoft.Hadoop.Avro-Core/1.1.1": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
@@ -3300,12 +3300,12 @@
         "lib/netstandard1.0/Microsoft.Extensions.Primitives.xml"
       ]
     },
-    "Microsoft.Hadoop.Avro-Core/1.1.1-alpha00009": {
-      "sha512": "RDBADMWJNjeHLyDkCHzc1PI91OiBXHaw7TplE6fgvda6254Ov1b2GQydiQIHZUp8ybY3dvTlYRxLPI9CH/RahA==",
+    "Microsoft.Hadoop.Avro-Core/1.1.1": {
+      "sha512": "b0Takr0DRck0p3ZHYeYiLpDLYqZiNVgB0VksmMg970L4x/kJE/Wgz3eiWtLY4NzIMCMMoXfDKmo2dsBs46iXvA==",
       "type": "package",
-      "path": "Microsoft.Hadoop.Avro-Core/1.1.1-alpha00009",
+      "path": "Microsoft.Hadoop.Avro-Core/1.1.1",
       "files": [
-        "Microsoft.Hadoop.Avro-Core.1.1.1-alpha00009.nupkg.sha512",
+        "Microsoft.Hadoop.Avro-Core.1.1.1.nupkg.sha512",
         "Microsoft.Hadoop.Avro-Core.nuspec",
         "lib/net45/Microsoft.Hadoop.Avro-Core.dll",
         "lib/netcoreapp1.0/Microsoft.Hadoop.Avro-Core.dll",
@@ -8177,7 +8177,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.Hadoop.Avro-Core >= 1.1.1-alpha00009",
+      "Microsoft.Hadoop.Avro-Core >= 1.1.1",
       "RdKafka >= 0.9.1",
       "SchemaRegistryClient >= 1.0.0"
     ],
