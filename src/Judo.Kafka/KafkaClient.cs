@@ -12,7 +12,6 @@ namespace Judo.Kafka
         public static KafkaClient Connect(string[] bootstrapServers, string schemaRegistryUrl, Config config = null)
         {
             return new KafkaClient(bootstrapServers, schemaRegistryUrl, config);
-
         }
 
         private KafkaClient(string[] bootstrapServers, string schemaRegistryUrl, Config config)
@@ -20,14 +19,14 @@ namespace Judo.Kafka
             _bootstrapServers = bootstrapServers;
             _schemaRegistryUrl = schemaRegistryUrl;
             _config = config;
-
         }
 
         public ITopicProducer GetTopicProducer(string topicName, TopicConfig cfg = null)
         {
-            var producer = new Producer(_config,String.Join(",", _bootstrapServers));
+            var producer = new Producer(_config, string.Join(",", _bootstrapServers));
             var topic = producer.Topic(topicName, cfg);
-            return new AvroTopicProducer(producer, topic, new SchemaRegistryAvroSerializer(new CachedSchemaRegistryClient(_schemaRegistryUrl, 200)));
+            var schemaRegistryAvroSerializer = new SchemaRegistryAvroSerializer(new CachedSchemaRegistryClient(_schemaRegistryUrl, 200));
+            return new AvroTopicProducer(producer, topic, schemaRegistryAvroSerializer);
         }
     }
 }
