@@ -18,15 +18,15 @@ namespace Judo.Kafka
 
         public async Task<DeliveryReport> ProduceAsync<TMessage>(TMessage payload, int partition = -1)
         {
-            var serializeTask =  await _kafkaSerializer.SerializeAsync(payload, false, _topic.Name);
-            return await _topic.Produce(serializeTask, partition: partition);
+            var serializeTask =  await _kafkaSerializer.SerializeAsync(payload, false, _topic.Name).ConfigureAwait(false);
+            return await _topic.Produce(serializeTask, partition: partition).ConfigureAwait(false);
         }
 
         public async Task<DeliveryReport> ProduceAsync<TKey, TMessage>(TKey key, TMessage message, int partition = -1)
         {
-            var keyPayloadTask = _kafkaSerializer.SerializeAsync(key, true, _topic.Name);
-            var valuePayloadTask = _kafkaSerializer.SerializeAsync(message, false, _topic.Name);
-            return await _topic.Produce(await valuePayloadTask, await keyPayloadTask, partition: partition);
+            var keyPayloadTask = await _kafkaSerializer.SerializeAsync(key, true, _topic.Name).ConfigureAwait(false);
+            var valuePayloadTask = await _kafkaSerializer.SerializeAsync(message, false, _topic.Name).ConfigureAwait(false);
+            return await _topic.Produce(valuePayloadTask, keyPayloadTask, partition: partition).ConfigureAwait(false);
         }
 
         public void Dispose()
