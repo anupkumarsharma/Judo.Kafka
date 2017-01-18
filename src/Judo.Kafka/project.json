@@ -4,7 +4,7 @@
     "dependencies": {
         "RdKafka": "0.9.1",
         "Microsoft.Hadoop.Avro-Core": "1.1.1",
-        "SchemaRegistryClient": "1.0.2-beta00021"
+      "SchemaRegistryClient": "1.0.3"
     },
 
     "frameworks": {

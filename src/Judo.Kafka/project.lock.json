@@ -863,7 +863,7 @@
           }
         }
       },
-      "SchemaRegistryClient/1.0.2-beta00021": {
+      "SchemaRegistryClient/1.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "1.0.0",
@@ -2946,7 +2946,7 @@
           }
         }
       },
-      "SchemaRegistryClient/1.0.2-beta00021": {
+      "SchemaRegistryClient/1.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "1.0.0",
@@ -3986,12 +3986,12 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "SchemaRegistryClient/1.0.2-beta00021": {
-      "sha512": "+COw68MSOQ21FZrU3+ceKGqBQ6wB8CRpTU7w+hqx/eT0GBJE7oI+vYMLSMytqeu5pjmpmtrsSgu+vFbFa728ZQ==",
+    "SchemaRegistryClient/1.0.3": {
+      "sha512": "oi157eMxYIqCRTub4OCAHUFhOo1lHXJu11sS3kbo7lNPXzawY2HGtnXyiG2HzJ+xtX4gE+C2dLqON1ct4hNcCg==",
       "type": "package",
-      "path": "SchemaRegistryClient/1.0.2-beta00021",
+      "path": "SchemaRegistryClient/1.0.3",
       "files": [
-        "SchemaRegistryClient.1.0.2-beta00021.nupkg.sha512",
+        "SchemaRegistryClient.1.0.3.nupkg.sha512",
         "SchemaRegistryClient.nuspec",
         "lib/net451/SchemaRegistryClient.dll",
         "lib/netcoreapp1.0/SchemaRegistryClient.dll",
@@ -9587,7 +9587,7 @@
     "": [
       "Microsoft.Hadoop.Avro-Core >= 1.1.1",
       "RdKafka >= 0.9.1",
-      "SchemaRegistryClient >= 1.0.2-beta00021"
+      "SchemaRegistryClient >= 1.0.3"
     ],
     ".NETCoreApp,Version=v1.1": [
       "Microsoft.NETCore.App >= 1.1.0"
