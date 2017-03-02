@@ -11,11 +11,13 @@ namespace Judo.Kafka
     {
         private readonly ISchemaRegistryClient _schemaRegistryClient;
         private readonly IDictionary<Type, object> _serializerCache = new Dictionary<Type, object>();
+        private readonly bool _useAvroDataContractResolver;
 
 
-        public SchemaRegistryAvroSerializer(ISchemaRegistryClient schemaRegistryClient)
+        public SchemaRegistryAvroSerializer(ISchemaRegistryClient schemaRegistryClient, bool useAvroDataContractResolver)
         {
             _schemaRegistryClient = schemaRegistryClient;
+            _useAvroDataContractResolver = useAvroDataContractResolver;
         }
 
         public Task<TPayload> DeserializeAsync<TPayload>(byte[] payload, bool isKey, string topic)
@@ -62,7 +64,10 @@ namespace Judo.Kafka
 
             var serializer = AvroSerializer.Create<TPayload>(new AvroSerializerSettings()
             {
-                Resolver = new AvroPublicMemberContractResolver(true),
+                Resolver =
+                    _useAvroDataContractResolver
+                        ? (AvroContractResolver) new AvroDataContractResolver(true)
+                        : new AvroPublicMemberContractResolver(true),
                 Surrogate = new AvroSurrogateStrategy()
             });
 

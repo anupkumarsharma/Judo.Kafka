@@ -10,7 +10,7 @@ init:
 before_build:
 - appveyor-retry dotnet restore -v Minimal
 build_script:
-- dotnet build "src\Judo.Kafka" -c %CONFIGURATION% --no-dependencies
+- dotnet build "src\Judo.Kafka" -c %CONFIGURATION% --no-dependencies 
 after_build:
 - dotnet pack "src\Judo.Kafka" -c %CONFIGURATION% --no-build -o artifacts
 artifacts:

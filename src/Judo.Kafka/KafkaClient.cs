@@ -21,11 +21,11 @@ namespace Judo.Kafka
             _config = config;
         }
 
-        public ITopicProducer GetTopicProducer(string topicName, TopicConfig cfg = null)
+        public ITopicProducer GetTopicProducer(string topicName, TopicConfig cfg = null, bool useAvroDataContractResolver = false)
         {
             var producer = new Producer(_config, string.Join(",", _bootstrapServers));
             var topic = producer.Topic(topicName, cfg);
-            var schemaRegistryAvroSerializer = new SchemaRegistryAvroSerializer(new CachedSchemaRegistryClient(_schemaRegistryUrl, 200));
+            var schemaRegistryAvroSerializer = new SchemaRegistryAvroSerializer(new CachedSchemaRegistryClient(_schemaRegistryUrl, 200), useAvroDataContractResolver);
             return new AvroTopicProducer(producer, topic, schemaRegistryAvroSerializer);
         }
     }
