@@ -1,10 +1,10 @@
 ﻿{
-    "version": "1.0.6",
+    "version": "1.0.7",
 
     "dependencies": {
         "RdKafka": "0.9.1",
         "Microsoft.Hadoop.Avro-Core": "1.1.1",
-      "SchemaRegistryClient": "1.0.3"
+      "SchemaRegistryClient": "1.0.4"
     },
 
     "frameworks": {
