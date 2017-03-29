@@ -1,8 +1,8 @@
 ﻿{
-    "version": "1.0.7",
+    "version": "1.0.8",
 
     "dependencies": {
-        "RdKafka": "0.9.1",
+        "Confluent.Kafka": "0.9.4",
         "Microsoft.Hadoop.Avro-Core": "1.1.1",
       "SchemaRegistryClient": "1.0.4"
     },

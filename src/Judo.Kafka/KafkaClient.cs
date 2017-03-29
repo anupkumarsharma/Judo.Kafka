@@ -1,32 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
 using Judo.SchemaRegistryClient;
-using RdKafka;
+using Confluent.Kafka;
 
 namespace Judo.Kafka
 {
-    public class KafkaClient 
+    public class KafkaClient
     {
-        private readonly string[] _bootstrapServers;
         private readonly string _schemaRegistryUrl;
-        private Config _config;
-        public static KafkaClient Connect(string[] bootstrapServers, string schemaRegistryUrl, Config config = null)
+        private readonly Dictionary<string, object> _configuration;
+
+        /// <summary>
+        /// Creates a new Kafka producer connection
+        /// </summary>
+        /// <param name="schemaRegistryUrl">The schema registry URL.</param>
+        /// <param name="configuration">Kafka configuration parameters (refer to https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md).
+        ///  Topic configuration parameters are specified via the "default.topic.config" sub-dictionary config parameter.</param>
+        /// <returns>A new Kafka producer connection.</returns>
+        public static KafkaClient Connect(string schemaRegistryUrl, Dictionary<string, object> configuration)
         {
-            return new KafkaClient(bootstrapServers, schemaRegistryUrl, config);
+            return new KafkaClient(schemaRegistryUrl, configuration);
         }
 
-        private KafkaClient(string[] bootstrapServers, string schemaRegistryUrl, Config config)
+        private KafkaClient(string schemaRegistryUrl, Dictionary<string, object> configuration)
         {
-            _bootstrapServers = bootstrapServers;
             _schemaRegistryUrl = schemaRegistryUrl;
-            _config = config;
+            _configuration = configuration;
         }
 
-        public ITopicProducer GetTopicProducer(string topicName, TopicConfig cfg = null, bool useAvroDataContractResolver = false)
+        /// <summary>
+        /// Initializes and returns a new producer instance 
+        /// </summary>
+        /// <param name="topicName">The topic that this producer will produce to.</param>
+        /// <param name="useAvroDataContractResolver">A flag to use the AvroDataContractResolver; false will use the AvroPublicMemberResolver.</param>
+        /// <returns>A new Kafka producer.</returns>
+        public ITopicProducer GetTopicProducer(string topicName, bool useAvroDataContractResolver = false)
         {
-            var producer = new Producer(_config, string.Join(",", _bootstrapServers));
-            var topic = producer.Topic(topicName, cfg);
+            var producer = new Producer(_configuration, false, false);
             var schemaRegistryAvroSerializer = new SchemaRegistryAvroSerializer(new CachedSchemaRegistryClient(_schemaRegistryUrl, 200), useAvroDataContractResolver);
-            return new AvroTopicProducer(producer, topic, schemaRegistryAvroSerializer);
+            return new AvroTopicProducer(producer, topicName, schemaRegistryAvroSerializer);
         }
     }
 }
