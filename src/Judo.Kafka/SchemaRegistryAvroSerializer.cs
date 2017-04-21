@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Judo.Kafka
     class SchemaRegistryAvroSerializer : IKafkaSerialzier
     {
         private readonly ISchemaRegistryClient _schemaRegistryClient;
-        private readonly IDictionary<Type, object> _serializerCache = new Dictionary<Type, object>();
+        private readonly ConcurrentDictionary<Type, object> _serializerCache = new ConcurrentDictionary<Type, object>();
         private readonly bool _useAvroDataContractResolver;
 
 
@@ -57,21 +58,15 @@ namespace Judo.Kafka
 
         private IAvroSerializer<TPayload> GetSerializer<TPayload>()
         {
-            if (_serializerCache.ContainsKey(typeof(TPayload)))
-            {
-                return (IAvroSerializer<TPayload>)_serializerCache[typeof(TPayload)];
-            }
-
-            var serializer = AvroSerializer.Create<TPayload>(new AvroSerializerSettings()
-            {
-                Resolver =
-                    _useAvroDataContractResolver
-                        ? (AvroContractResolver) new AvroDataContractResolver(true)
-                        : new AvroPublicMemberContractResolver(true),
-                Surrogate = new AvroSurrogateStrategy()
-            });
-
-            _serializerCache.Add(typeof(TPayload), serializer);
+            var serializer = (IAvroSerializer<TPayload>) _serializerCache.GetOrAdd(typeof(TPayload),
+                AvroSerializer.Create<TPayload>(new AvroSerializerSettings
+                {
+                    Resolver =
+                        _useAvroDataContractResolver
+                            ? (AvroContractResolver) new AvroDataContractResolver(true)
+                            : new AvroPublicMemberContractResolver(true),
+                    Surrogate = new AvroSurrogateStrategy()
+                }));
 
             return serializer;
         }

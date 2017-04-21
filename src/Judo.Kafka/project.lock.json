@@ -3426,7 +3426,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Common/1.3.0": {
-      "sha512": "V09G35cs0CT1C4Dr1IEOh8IGfnWALEVAOO5JXsqagxXwmYR012TlorQ+vx2eXxfZRKs3gAS/r92gN9kRBLba5A==",
+      "sha512": "BlDvoeYwCA/oRadUz3Y9GAgzM93sGHwxF7pUuLkq43mVQyZ0kTp8TR/pMEQmGKWk3XXhhNidEZJXMXm00E81Gg==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.Common/1.3.0",
       "files": [
@@ -3442,7 +3442,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.CSharp/1.3.0": {
-      "sha512": "BgWDIAbSFsHuGeLSn/rljLi51nXqkSo4DZ0qEIrHyPVasrhxEVq7aV8KKZ3HEfSFB+GIhBmOogE+mlOLYg19eg==",
+      "sha512": "0PdM/oozVJZOfzbAGOtJbx1x5mTBMvMrlCQneyVFw7uJMlQ0QaihLPRuTtGFddjeM4/AhFpC0f8/5+0o3TiMPQ==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.CSharp/1.3.0",
       "files": [
@@ -3458,7 +3458,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.VisualBasic/1.3.0": {
-      "sha512": "Sf3k8PkTkWqBmXnnblJbvb7ewO6mJzX6WO2t7m04BmOY5qBq6yhhyXnn/BMM+QCec3Arw3X35Zd8f9eBql0qgg==",
+      "sha512": "hIBw4A1YDFXY8/ANpbYvcjdsLuJ/qievKbXDq0o2u6gsQCi+v7ZnGX88hM3iGXBCThijehe9DRK+po4RDXZJgg==",
       "type": "package",
       "path": "Microsoft.CodeAnalysis.VisualBasic/1.3.0",
       "files": [
@@ -3782,7 +3782,7 @@
       ]
     },
     "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
-      "sha512": "SaToCvvsGMxTgtLv/BrFQ5IFMPRE1zpWbnqbpwykJa8W5XiX82CXI6K2o7yf5xS7EP6t/JzFLV0SIDuWpvBZVw==",
+      "sha512": "m6ceHdw0Rvve8emv7TATetQdt3xysYnKRR85d9ecs+DeiFKWsfoHzZvR0hIrtmKLhBYp9iWLbSBPkvehDmm94Q==",
       "type": "package",
       "path": "Microsoft.NETCore.Windows.ApiSets/1.0.1",
       "files": [
