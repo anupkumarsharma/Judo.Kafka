@@ -59,7 +59,7 @@ namespace Judo.Kafka
         private IAvroSerializer<TPayload> GetSerializer<TPayload>()
         {
             var serializer = (IAvroSerializer<TPayload>) _serializerCache.GetOrAdd(typeof(TPayload),
-                AvroSerializer.Create<TPayload>(new AvroSerializerSettings
+                type => AvroSerializer.Create<TPayload>(new AvroSerializerSettings
                 {
                     Resolver =
                         _useAvroDataContractResolver
