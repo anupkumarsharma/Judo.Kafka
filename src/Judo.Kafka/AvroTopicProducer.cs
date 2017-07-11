@@ -3,7 +3,7 @@ using Confluent.Kafka;
 
 namespace Judo.Kafka
 {
-    class AvroTopicProducer : ITopicProducer
+    public class AvroTopicProducer : ITopicProducer
     {
         private readonly string _topicName;
         private readonly Producer _producer;

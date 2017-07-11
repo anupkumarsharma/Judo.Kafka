@@ -8,7 +8,7 @@ using Microsoft.Hadoop.Avro;
 
 namespace Judo.Kafka
 {
-    class SchemaRegistryAvroSerializer : IKafkaSerialzier
+    public class SchemaRegistryAvroSerializer : IKafkaSerialzier
     {
         private readonly ISchemaRegistryClient _schemaRegistryClient;
         private readonly ConcurrentDictionary<Type, object> _serializerCache = new ConcurrentDictionary<Type, object>();
